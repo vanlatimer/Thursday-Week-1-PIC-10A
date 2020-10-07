@@ -1,0 +1,154 @@
+// Example program
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <typeinfo>
+using namespace std;
+
+int main()
+{
+  //let's write a program that takes in the radius of a circle and returns the area and circumference. 
+
+/*  
+  int radius;
+  int PI = 3.14159;
+  int area;
+  int circumference;
+  
+  cout << "Please gimme a radius: ";
+  cin >> radius;
+  
+  area = PI * pow(radius, 2);
+  circumference = PI * radius * 2;
+  
+  
+  cout << "The area is " << area << ";" << endl <<"The circumference is " << circumference << ";" << endl;
+  */
+  //Try out this code. What's wrong? It looks like everything is an integer in the outputs, which doesn't make sense. Oh! I made everything an integer rather than a double. 
+  
+  //Trying again: 
+  /*
+  double radius;
+  double PI = 3.14159;
+  double area;
+  double circumference;
+  
+  cout << "Please gimme a radius: ";
+  cin >> radius;
+  
+  area = PI * pow(radius, 2);
+  circumference = PI * radius * 2;
+  
+  cout << "The area is " << area << ";" << endl <<"The circumference is " << circumference << ";" << endl;
+  */
+  //That looks better! 
+  
+  //Let's now try to make a program that, given a base and height (two legs), computes the area and hypotenuse of right triangle. This time we'll be sure to use doubles. 
+  /*
+  double leg1;
+  double leg2;
+  double area;
+  double hypotenuse;
+  
+  cout << "Gimme leg1 please: ";
+  cin >> leg1;
+  cout << "And leg2? " ;
+  cin >> leg2;
+  
+  area = (1/2) * leg1 *leg2;
+  hypotenuse = sqrt(leg1*leg1 + leg2*leg2);
+  
+  cout << "The area is " << area << " and the hypotenuse is " << hypotenuse << endl;
+  
+  //Try it out. Uh oh, why is the area 0??? We know leg1 is not 0, nor is leg2, although we could test this with a simple cout. Surely 1/2 can't be 0:
+  cout << 1/2 << endl;
+  
+  */
+  //It is! That's because 1 and 2 are called literals, and their implicit type is integer, so C++ divides them with integer division, that is, without remainder, so the result is 0. 
+  //Let's try again
+  /*
+  double leg1;
+  double leg2;
+  double area;
+  double hypotenuse;
+  
+  cout << "Gimme leg1 please: ";
+  cin >> leg1;
+  cout << "And leg2? " ;
+  cin >> leg2;
+  
+  area = 0.5 * leg1 *leg2;
+  hypotenuse = sqrt(leg1*leg1 + leg2*leg2);
+  
+  cout << "The area is " << area << " and the hypotenuse is " << hypotenuse << endl;
+  */
+  
+  //That's better! 
+  
+  //Let's do some practice now with incrementing: 
+  
+  int a = 1;
+  a++;
+  cout << a << endl;
+  
+  int b = 1;
+  ++b;
+  cout << b << endl;
+  
+  //We get the same thing! So what's the difference? Try this. Remember, a and b are both 2 now. 
+  
+  cout << a++ << endl;
+  cout << ++b << endl;
+  
+  //So a++ couted as 2, but ++b as 3! This means that ++b returned the incremented value while a++ returned the unincremented value. 
+  
+  //Let's write a program now that extracts the digits from a positive decimal between 0 and 999.999, with no more than 3 decimal places. 
+    
+  double Decimal;
+  int hundreds;
+  int tens;
+  int ones;
+  int tenths;
+  int hundredths;
+  int thousandths;
+  
+  cout << "Let's have a number, shall we? No more than 3 digits before or after the decimal, please. " << endl;
+  cin >> Decimal;
+  /*
+  hundreds = Decimal %1000;
+  */
+  
+  //This gives an error because 1000 is not an integer. We need to round. Let's use the floor function. 
+  
+  /*
+  hundreds = floor(Decimal) % 1000;
+  */
+  
+  //Still gives an error! Let's check output of floor! Just google it to find out how! If it doesn't work, we just check the error message: Oh, we need to include a library!
+  cout << typeid(floor(Decimal)).name() << endl;
+  
+  //We could google this if we wanted, but let's safely assume d means double. So floor returns a double, even though it has the same value as the integer we want. Thus, we need casting. 
+  
+
+  hundreds = int(floor(Decimal)) % 1000; //no errors! 
+  tens     = int(floor(Decimal)) % 100;
+  ones     = int(floor(Decimal)) % 10;
+  
+  //What about the decimals? We can multiply by a thousand to move everything up to before the decimal! 
+  
+  tenths        = int(floor(1000 * Decimal)) % 1000; 
+  hundredths    = int(floor(1000 * Decimal)) % 100;
+  thousandths   = int(floor(1000 * Decimal)) % 10;
+  
+  cout << "The digits in the hundreds place is " << hundreds << endl;
+  cout << "The digits in the tens place is " << tens << endl;
+  cout << "The digits in the ones place is " << ones << endl;
+  cout << "The digits in the tenths place is " << tenths << endl;
+  cout << "The digits in the hundredths place is " << hundredths << endl;
+  cout << "The digits in the thousandths place is " << thousandths << endl;
+  
+  
+  
+  
+}
+
